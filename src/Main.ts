@@ -132,5 +132,5 @@ server.get('/v2/myip/', async (req: any, res) => {
 });
 
 server.listen(3000, () => {
-    console.info('ADSB One API server started.')
+    console.info('OARC ADS-B API server started.')
 });
