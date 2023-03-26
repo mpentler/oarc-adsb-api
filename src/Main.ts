@@ -106,6 +106,30 @@ server.get('/v2/point/:lat/:lon/:rad', async (req: any, res) => {
     res.send(pointRes);
 });
 
+// Get details of connecting IP's stats
+server.get('/v2/myip/', async (req: any, res) => {
+    const ipAddress = requestIP.getClientIp(req);
+
+    var clientsJSON: any = await axios.get(`http://127.0.0.1/data/clients.json`);
+    var clients = clientsJSON.data[`clients`];
+    var myip;
+ 
+    clients.forEach(function (client: any) {
+        var splitted = client[1].trim().split(" ", 1)[0];
+        if (splitted == ipAddress) {
+            myip = JSON.stringify(client);
+        }
+    });
+
+    res.type('json');
+
+    if (myip) {
+        res.send(myip);
+    } else {
+        res.send(JSON.stringify("No match!"));        
+    }
+});
+
 server.listen(3000, () => {
     console.info('ADSB One API server started.')
 });
