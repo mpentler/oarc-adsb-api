@@ -17,6 +17,7 @@ The OARC ADS-B API lives at https://oarc.adsb.uk/api. Use the table below for en
 | /v2/ladd/ | GET | Returns all aircraft tagged as LADD |
 | /v2/pia/ | GET | Returns all aircraft tagged as PIA |
 | /v2/point/[lat]/[lon]/[radius] | GET | Returns all aircraft within a certain radius of a given point up to 250 nm |
+| /v2/myip/ | GET | Returns live Beast and MLAT feeder data for the current IP if it exists |
 
 ## Example Usage
 `curl https://adsb.oarc.uk/api/v2/hex/A9CEE9`  
