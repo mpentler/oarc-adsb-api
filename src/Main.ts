@@ -1,13 +1,14 @@
 import axios from 'axios';
 import * as CORS from 'cors';
 import * as Express from 'express';
+const requestIP = require('request-ip');
 
 const server = Express.default();
 
 server.use(CORS.default());
 
-const readsb_api_host = process.env['READSB_API_HOST'] || 'readsb_hub';
-const readsb_api_port = process.env['READSB_API_PORT'] || '30006';
+const readsb_api_host = process.env['READSB_API_HOST'] || '127.0.0.1';
+const readsb_api_port = process.env['READSB_API_PORT'] || '35005';
 
 
 // Get one or more aircraft based on Mode S hex code
