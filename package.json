@@ -8,14 +8,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ADSB-One/api.git"
+    "url": "git+https://github.com/mpentler/oarc-adsb-api.git"
   },
   "author": "Huusky",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/ADSB-One/api/issues"
+    "url": "https://github.com/mpentler/oarc-adsb-api/issues"
   },
-  "homepage": "https://github.com/ADSB-One/api#readme",
+  "homepage": "https://github.com/mpentler/oarc-adsb-api#readme",
   "devDependencies": {
     "@tsconfig/node18-strictest": "^1.0.0",
     "@types/cors": "^2.8.13",
