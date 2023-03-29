@@ -149,6 +149,21 @@ server.get('/v3/myip/', async (req: any, res) => {
     res.send(myipRes);
 });
 
+// Returns current number of beast and mlat feeders
+server.get('/v3/feedcount/', async (_req: any, res) => {
+    var beastJSON = JSON.parse(fs.readFileSync('/run/readsb/clients.json'));
+    var mlatJSON = JSON.parse(fs.readFileSync('/run/mlat-server/clients.json'));
+    var beastclients = beastJSON[`clients`];
+    var mlatclients = Object.keys(mlatJSON);
+    var feedcountRes = [];
+
+    feedcountRes[0] = beastclients.length-1; // Minus 1 for the MLAT feedback
+    feedcountRes[1] = mlatclients.length;
+
+    res.type('json');
+    res.send(feedcountRes);
+});
+
 server.listen(3000, () => {
     console.info('OARC ADS-B API server started.')
 });
