@@ -1,7 +1,7 @@
 ![Docker Build Status](https://github.com/mpentler/oarc-adsb-api/actions/workflows/docker.yml/badge.svg)
 # OARC ADS-B API
 
-The OARC ADS-B API lives at https://oarc.adsb.uk/api. Use the table below for endpoints. To make switching easy, all responses conform to the ADSBExchange v2 API. 
+The OARC ADS-B API lives at https://adsb.oarc.uk/api. Use the table below for endpoints. To make switching easy, all responses conform to the ADSBExchange v2 API. 
 
 # Endpoints
 **NOTE**: Replace `[var]` with your value. Do not include the brackets in your API call.
