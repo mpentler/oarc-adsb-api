@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as CORS from 'cors';
 import * as Express from 'express';
 const requestIP = require('request-ip');
+const fs = require('fs');
 
 const server = Express.default();
 
@@ -108,27 +109,44 @@ server.get('/v2/point/:lat/:lon/:rad', async (req: any, res) => {
 });
 
 // Get details of connecting IP's stats
-server.get('/v2/myip/', async (req: any, res) => {
+server.get('/v3/myip/', async (req: any, res) => {
     const ipAddress = requestIP.getClientIp(req);
+    var beastJSON = JSON.parse(fs.readFileSync('/run/readsb/clients.json'));
+    var mlatJSON = JSON.parse(fs.readFileSync('/run/mlat-server/clients.json'));
+    var beastclients = beastJSON[`clients`];
+    var mlatclients = Object.keys(mlatJSON);
+    var beastdata;
+    var mlatdata;
+    var myipRes = [];
 
-    var clientsJSON: any = await axios.get(`http://127.0.0.1/data/clients.json`);
-    var clients = clientsJSON.data[`clients`];
-    var myip;
- 
-    clients.forEach(function (client: any) {
+    beastclients.forEach(function (client: any) {
         var splitted = client[1].trim().split(" ", 1)[0];
         if (splitted == ipAddress) {
-            myip = JSON.stringify(client);
+            beastdata = client;
         }
     });
 
-    res.type('json');
+    mlatclients.forEach((client) => {
+        var splitted = Object.values(mlatJSON[client]["source_ip"]).join("");
+        if (splitted == ipAddress) {
+            mlatdata = mlatJSON[client];
+        }
+    });
 
-    if (myip) {
-        res.send(myip);
+    if (beastdata) {
+        myipRes[0] = beastdata;
     } else {
-        res.send(JSON.stringify("No match!"));        
+        myipRes[0] = "No match!";
     }
+
+    if (mlatdata) {
+        myipRes[1] = mlatdata;
+    } else {
+        myipRes[1] = "No match!";
+    }
+
+    res.type('json');
+    res.send(myipRes);
 });
 
 server.listen(3000, () => {
