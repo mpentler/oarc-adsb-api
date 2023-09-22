@@ -3,18 +3,18 @@ export class BeastEntry {
     ip: string;
     port: number;
     bandwidthKbps: number;
-    unknownThing: number;
+    connectionTimeSeconds: number;
     messagesPerSecond: number;
     positionsPerSecond: number;
     latencyMs: number;
     positionsTotal: number;
 
-    constructor(uuid: string, ip: string, port: number, bandwidthKbps: number, unknownThing: number, messagesPerSecond: number, positionsPerSecond: number, latencyMs: number, positionsTotal: number) {
+    constructor(uuid: string, ip: string, port: number, bandwidthKbps: number, connectionTimeSeconds: number, messagesPerSecond: number, positionsPerSecond: number, latencyMs: number, positionsTotal: number) {
         this.uuid = uuid;
         this.ip = ip;
         this.port = port;
         this.bandwidthKbps = bandwidthKbps;
-        this.unknownThing = unknownThing;
+        this.connectionTimeSeconds = connectionTimeSeconds;
         this.messagesPerSecond = messagesPerSecond;
         this.positionsPerSecond = positionsPerSecond;
         this.latencyMs = latencyMs;
@@ -26,7 +26,7 @@ export class BeastEntry {
         const ip = arr[1].split("port")[0].trim() || null;
         const port = parseInt(arr[1].trim().split('port')[1].trim());
         const bandwidthKbps = arr[2];
-        const unknownThing = arr[3];
+        const connectionTimeSeconds = arr[3];
         const messagesPerSecond = arr[4];
         const positionsPerSecond = arr[5];
         const latencyMs = arr[6];
@@ -37,7 +37,7 @@ export class BeastEntry {
             ip,
             port,
             bandwidthKbps,
-            unknownThing,
+            connectionTimeSeconds,
             messagesPerSecond,
             positionsPerSecond,
             latencyMs,

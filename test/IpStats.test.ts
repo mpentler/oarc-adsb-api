@@ -23,7 +23,7 @@ describe('testing BeastEntry', () => {
         expect(beastEntry.ip).toBe("1.2.3.4");
         expect(beastEntry.port).toBe(46358);
         expect(beastEntry.bandwidthKbps).toBe(15.36);
-        expect(beastEntry.unknownThing).toBe(1523);
+        expect(beastEntry.connectionTimeSeconds).toBe(1523);
         expect(beastEntry.messagesPerSecond).toBe(88.091);
         expect(beastEntry.positionsPerSecond).toBe(17.626);
         expect(beastEntry.latencyMs).toBe(0);
