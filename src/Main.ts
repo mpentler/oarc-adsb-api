@@ -4,6 +4,8 @@ import * as Express from 'express';
 const requestIP = require('request-ip');
 const fs = require('fs');
 
+import {getIpData} from "./IpStats";
+
 const server = Express.default();
 
 server.use(CORS.default());
@@ -149,7 +151,22 @@ server.get('/v3/myip/', async (req: any, res) => {
     res.send(myipRes);
 });
 
-// Returns current number of beast and mlat feeders
+
+// Get details of connecting IP's stats
+server.get('/v4/myip/', async (req: any, res) => {
+    const ipAddress = requestIP.getClientIp(req);
+
+    const beastJsonFileContent = fs.readFileSync('/run/readsb/clients.json');
+    const mlatJsonFileContent = fs.readFileSync('/run/mlat-server/clients.json');
+
+    const myIpResults = getIpData(ipAddress, beastJsonFileContent, mlatJsonFileContent);
+
+    res.type('json');
+    res.send(myIpResults);
+});
+
+
+// Returns current number of Beast and MLAT feeders
 server.get('/v3/feedcount/', async (_req: any, res) => {
     var beastJSON = JSON.parse(fs.readFileSync('/run/readsb/clients.json'));
     var mlatJSON = JSON.parse(fs.readFileSync('/run/mlat-server/clients.json'));
