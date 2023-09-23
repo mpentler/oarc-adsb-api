@@ -115,7 +115,8 @@ export class MlatEntry {
 
 export function getIpData(ipAddress: string, beastJsonFileContent: string, mlatFileContentFileContent: string) {
 
-    const myIpResults: { mlatData: MlatEntry[]; beastData: BeastEntry[]; uuids: any[] } = {
+    const myIpResults: { ip: string, mlatData: MlatEntry[]; beastData: BeastEntry[]; uuids: any[] } = {
+        ip: ipAddress,
         uuids: [],
         beastData: [],
         mlatData: [],
