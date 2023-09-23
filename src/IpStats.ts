@@ -29,8 +29,8 @@ export class BeastEntry {
         const connectionTimeSeconds = arr[3];
         const messagesPerSecond = arr[4];
         const positionsPerSecond = arr[5];
-        const latencyMs = arr[6];
-        const positionsTotal = arr[7];
+        const latencyMs = arr[7];
+        const positionsTotal = arr[8];
 
         return new BeastEntry(
             uuid,

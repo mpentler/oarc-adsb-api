@@ -26,8 +26,9 @@ describe('testing BeastEntry', () => {
         expect(beastEntry.connectionTimeSeconds).toBe(1523);
         expect(beastEntry.messagesPerSecond).toBe(88.091);
         expect(beastEntry.positionsPerSecond).toBe(17.626);
-        expect(beastEntry.latencyMs).toBe(0);
-        expect(beastEntry.positionsTotal).toBe(60);
+        // expect(beastEntry.TBC).toBe(0);
+        expect(beastEntry.latencyMs).toBe(60);
+        expect(beastEntry.positionsTotal).toBe(26844);
     })
 });
 describe('testing MlatEntry', () => {
